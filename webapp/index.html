@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function httpsRedirect() {
+                var httpURL = window.location.hostname + window.location.pathname;
+                console.log(httpURL);
+                if(window.location.href.match('localhost')) {
+                    console.log("https://" + window.location.hostname + ":" + "8443" + window.location.pathname);
+                    window.location = "https://" + window.location.hostname + ":" + "8443" + window.location.pathname;
+                } else window.location = "https://" + httpURL;
+            }
+            console.log(window.location.href);
+            if(!window.location.href.match('^https://'))
+                httpsRedirect();
+        </script>
+        <link rel="stylesheet" href="css/qunit-1.10.0.css"/>
+    </head>
+    <body>
+        <h1 id="baseurl"></h1>
+        <p id="explain"></p>
+        <div id="qunit"></div>
+    </body>
+    <script type="text/javascript">
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+      } else {
+        alert('The File APIs are not fully supported in this browser.');
+      }
+    </script>
+    <script type='text/javascript'>
+        var baseEl = document.getElementById('baseurl');
+        var re = /\/index.html$/;
+        var app = window.location.pathname.replace(re, "");
+        var appName = app.slice(1);
+        var host = window.location.hostname + ":" + window.location.port
+        baseEl.innerHTML = host + app;
+        var explainEl = document.getElementById('explain');
+        explainEl.innerHTML = appName + " is running on " + host;
+        window.document.title = appName + " default index.html page"
+    </script>
+    <script src="js/qunit-1.10.0.js"></script>
+    <script src="js/FatFractal.js"></script>
+    <script src="js/models.js"></script>
+    <script src="js/ManagingUsersTests.js"></script>
+    <script type='text/javascript'>
+        setUpManagingUsersTests();
+    </script>
+</html>
+
