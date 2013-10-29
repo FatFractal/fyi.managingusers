@@ -31,7 +31,7 @@ The other method is to add the additional information to a new Objecttype (my ex
 <em>PublicProfile with REFERENCE to MyFFUser(FFUser)</em><br>
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/src/com/fatfractal/fyi/managingusers/androidapp/model/PublicProfile.java>PublicProfile class with REFERENCE for Android</a><br>
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSApp/PublicProfile.h>PublicProfile class with REFERENCE for iOS</a><br>
-<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/models.js#lines-16-28>PublicProfile class with REFERENCE for HTML5/JS</a><br>
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/models.js#lines-29-41>PublicProfile class with REFERENCE for HTML5/JS</a><br>
 
 <em>Test cases for registering a FFUser(MyFFUser) user and creating a PublicProfile</em><br>
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/test/src/com/fatfractal/fyi/managingusers/androidapp/ManagingUsersAndroidAppTests.java#lines-152-226>Android test case for registering a FFUser(MyFFUser) user and creating a PublicProfile as well</a><br>
