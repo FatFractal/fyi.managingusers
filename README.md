@@ -13,9 +13,15 @@ The first method is to subclass the FFUser class that is included in all the SDK
 
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/src/com/fatfractal/fyi/managingusers/androidapp/model/MyFFUser.java>Subclassing FFUser for Android</a>
 
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/test/src/com/fatfractal/fyi/managingusers/androidapp/ManagingUsersAndroidAppTests.java#lines->Android test case for registering a MyFFUser user</a>
+
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSApp/MyFFUser.h>Subclassing FFUser for iOS</a>
 
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSAppTests/ManagingUsersIOSAppTests.m#lines-42-92>iOS test case for registering a MyFFUser user</a>
+
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/models.js#lines-1-14>Subclassing FFUser for HTML5/JS</a>
+
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/ManagingUsersTests.js>HTML5/JS test case for registering a MyFFUser user</a>
 
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-config/application.ffdl#line-21>FFDL definition for FFUser</a>
 
@@ -25,9 +31,17 @@ The other method is to add the additional information to a new Objecttype (my ex
 
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/src/com/fatfractal/fyi/managingusers/androidapp/model/PublicProfile.java>PublicProfile class with REFERENCE for Android</a>
 
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/test/src/com/fatfractal/fyi/managingusers/androidapp/ManagingUsersAndroidAppTests.java#lines-152-226>Android test case for registering a FFUser(MyFFUser) user and creating a PublicProfile as well</a>
+
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSApp/PublicProfile.h>PublicProfile class with REFERENCE for iOS</a>
 
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersAndroidApp/test/src/com/fatfractal/fyi/managingusers/androidapp/ManagingUsersAndroidAppTests.java>iOS test case for registering a MyFFUser user</a>
+
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSAppTests/ManagingUsersIOSAppTests.m#lines-94-129>iOS test case for registering a FFUser(MyFFUser) user and creating a PublicProfile as well</a>
+
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/models.js#lines-16-28>PublicProfile class with REFERENCE for HTML5/JS</a>
+
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/ManagingUsersTests.js>HTML5/JS test case for registering a FFUser(MyFFUser) user and creating a PublicProfile as well</a>
 
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-config/application.ffdl#line-25>FFDL definition for PublicProfile</a>
 
