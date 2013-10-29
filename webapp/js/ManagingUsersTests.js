@@ -1,5 +1,5 @@
 //
-//  KitchenSyncTests
+//  ManagingUsersTests
 //
 
 QUnit.config.autostart = false;
@@ -20,30 +20,6 @@ function setUpManagingUsersTests() {
 */
 var showLogs = true;
 
-function MyFFUser(obj) {
-   this.clazz = "MyFFUser";
-   this.FFUser = FFUser;
-   this.FFUser();
-   if(obj) {
-      this.userName   = obj.userName;
-      this.firstName  = obj.firstName;
-      this.lastName   = obj.lastName;
-      this.email      = obj.email;
-      this.active     = obj.active;
-      this.profilePic = obj.profilePic;
-      this.home = new FFGeoLocation(obj.home);
-   } else {
-      this.userName   = null;
-      this.firstName  = null;
-      this.lastName   = null;
-      this.email      = null;
-      this.active     = null;
-      this.profilePic = null;
-      this.home = new FFGeoLocation();
-   }
-}
-MyFFUser.prototype = new FFUser;
-
 /*!
 * Tests the ability to access data without authentication if allowed.
 */
@@ -53,6 +29,7 @@ asyncTest("testRegisterMyFFUser", function() {
    var lastName = randomString(7);
    var email = firstName + "@" + lastName + ".com";
    var password = "Aa1" + randomString(20);
+   var nickname = lastName + firstName;
    // start with standard user info
    var newUser = new MyFFUser();
    newUser.firstName = firstName;
@@ -63,11 +40,12 @@ asyncTest("testRegisterMyFFUser", function() {
    console.log(JSON.stringify(newUser));
    ff.register(newUser,  function(loggedInUser) {
       ok(ff.loggedIn(), "ff.loggedIn() is " + ff.loggedIn());
+      // add the profile data
       var home = new FFGeoLocation();
       home.latitude = 33.5;
       home.longitude = -112;
       loggedInUser.home = home;
-      // add the profile data
+      loggedInUser.nickname = nickname;
       ff.updateObj(loggedInUser, function(updatedUser) {
       	    ok(updatedUser.home.latitude == 33.5, "latitude is correct.");
       	    ok(updatedUser.home.longitude == -112, "longitude is correct.");
@@ -92,6 +70,55 @@ asyncTest("testRegisterMyFFUser", function() {
       ok(false, "Error registering the user " + newUser.userName + " error was " + msg);
       start(); 
    }); 
+});
+
+/*!
+* Tests the ability to access data without authentication if allowed.
+*/
+asyncTest("testRegisterMyFFUserWithProfile", function() {
+      // first - let's generate some data we will need...
+      var firstName = randomString(7);
+      var lastName = randomString(7);
+      var email = firstName + "@" + lastName + ".com";
+      var password = "Aa1" + randomString(20);
+      var nickname = lastName + firstName;
+      // start with standard user info
+      var newUser = new MyFFUser();
+      newUser.firstName = firstName;
+      newUser.lastName = lastName;
+      newUser.email = email;
+      newUser.userName = email;
+      newUser.password = password;
+      console.log(JSON.stringify(newUser));
+      ff.register(newUser,  function(loggedInUser) {
+      	    ok(ff.loggedIn(), "ff.loggedIn() is " + ff.loggedIn());
+      	    // now let's create the PublicProfile
+      	    var profile = new PublicProfile();
+      	    profile.user = loggedInUser;
+      	    profile.nickname = nickname; 
+      	    var home = new FFGeoLocation();
+      	    home.latitude = 33.5;
+      	    home.longitude = -112;
+      	    profile.home = home;
+      	    // add the profile data
+      	    getByteArrayFromImageUrl("assets/addphoto.png", function(pic) {
+      	    	  ok(pic !== null, "not able to read image.");
+      	    	  profile.profilePic = pic;
+      	    	  console.log("Image byteLength is: " + pic.byteLength);  
+      	    	  ff.createObjAtUri(profile, "/PublicProfile",  function(newProfile) {
+      	    	  	ok(newProfile.home.latitude == 33.5, "latitude is correct.");
+      	    	  	ok(newProfile.home.longitude == -112, "longitude is correct.");
+      	    	  	ok(newProfile.profilePic.byteLength !== null, "profilePic is correct.");
+      	    	        start(); 
+      	    	  }, function(code, msg) {
+      	    	     ok(false, "Failed to update the user profile data for " + loggedInUser.userName + " error was " + msg);
+      	    	     start(); 
+      	    	  });
+      	    });  
+      }, function(code, msg) {
+      	 ok(false, "Error registering the user " + newUser.userName + " error was " + msg);
+      	 start(); 
+      }); 
 });
 
 

@@ -1,15 +1,28 @@
+//
+//  ManagingUsersTests
+//
+
 function MyFFUser(obj) {
-   this.clazz = "FFUser";
-   if(u) {
+   this.clazz = "MyFFUser";
+   this.FFUser = FFUser;
+   this.FFUser();
+   if(obj) {
+      this.userName   = obj.userName;
+      this.firstName  = obj.firstName;
+      this.lastName   = obj.lastName;
+      this.email      = obj.email;
+      this.active     = obj.active;
       this.profilePic = obj.profilePic;
-      this.nickname = obj.nickname;
       this.home = new FFGeoLocation(obj.home);
-    } else {
+   } else {
+      this.userName   = null;
+      this.firstName  = null;
+      this.lastName   = null;
+      this.email      = null;
+      this.active     = null;
       this.profilePic = null;
-      this.nickname = null;
       this.home = new FFGeoLocation();
-    }
-    return this;
+   }
 }
 MyFFUser.prototype = new FFUser;
 
