@@ -1,11 +1,11 @@
 fyi.managingusers
 =================
 
-Examples of user management on the FatFractal platform
+This sample application demonstrates some of the options for doing user management on the FatFractal platform. The current version includes examples of two methods to add some custom information about the user to the system. Either is fine, and there are some important distinctions regarding access control that you may want to consider.
 
-This sample application demonstrates some of the options for doing user management on the FatFractal platform. 
+Android and iOS versions with test code are included, but the fastest way to see the results is to see the HTML5/JS version. You can get to see that from this link:
 
-The current version includes examples of two methods to add some custom information about the user to the system. Either is fine, and there are some important distinctions regarding access control that you may want to consider.
+https://fyi.fatfractal.com/managingusers/
 
 <strong>Subclassing FFUser</strong>
 
