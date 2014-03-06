@@ -210,6 +210,35 @@ public class ManagingUsersAndroidAppTests extends AndroidTestCase {
         }
     }
 
+    public void testChangePassword() throws FFException, URISyntaxException {
+        ffInstance = getFF(getContext());
+
+        if (ffInstance == null) return;
+
+        // first - let's generate some data we will need...
+        String firstName = getRandomString(7);
+        String lastName = getRandomString(7);
+        String email = firstName + "@" + lastName + ".com";
+        String username = firstName + lastName;
+        String password = "Aa1" + getRandomString(20);
+        String nickname = lastName + firstName;
+        FFGeoLocation home = new FFGeoLocation(33.5, -112);
+
+        // next - let's create and register the user with some minimum info
+        MyFFUser newUser = new MyFFUser();
+        newUser.setUserName(username);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setEmail(email);
+        FFObjectMapper.registerClassNameForClazz(MyFFUser.class.getName(), "FFUser");
+        ffInstance.registerUser(newUser, password);
+        assertNotNull("User registered and has guid", ffInstance.getMetaDataForObj(newUser).getGuid());
+        
+        // now let's change the password
+        String newPassword = "Aa1" + getRandomString(20);
+
+    }
+
     public static String getRandomString(int length){
         String alphabet = new String("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
         int n = alphabet.length();

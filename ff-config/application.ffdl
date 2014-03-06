@@ -41,3 +41,4 @@ CREATE COLLECTION /PublicProfiles OBJECTTYPE PublicProfile
 #
 # Extension Resources
 #
+CREATE EXTENSION /changePassword AS javascript:require('scripts/ManagingUsersExtensions').changePassword();

@@ -58,20 +58,12 @@ static NSString * baseUrl = @"https://fyi.fatfractal.com/managingusers";
     newUser.firstName = firstName;
     newUser.lastName = lastName;
     newUser.email = email;
+    newUser.nickname = nickname;
+    newUser.home = home;
     NSError * registerError;
     newUser = (MyFFUser *)[ff registerUser:newUser password:password error:&registerError];
     XCTAssertNil(registerError, @"Register error for %@; error was %@", [newUser userName], [registerError localizedDescription]);
     XCTAssertNotNil(newUser, @"Register failed for %@; uaer was nil", [newUser userName]);
-    
-    // now add in the "profile" data for the user...
-    newUser.nickname = nickname;
-    newUser.home = home;
-    NSError * updateError;
-    [ff updateObj:newUser error:&updateError];
-    XCTAssertNil(updateError,
-                 @"update user error for %@; error was %@",
-                 [newUser userName],
-                 [updateError localizedDescription]);
     
     // and then add in the profilePic...
     newUser.profilePic = pic;
@@ -126,6 +118,48 @@ static NSString * baseUrl = @"https://fyi.fatfractal.com/managingusers";
     profile = [ff createObj:profile atUri:@"/PublicProfiles" error:&error];
     XCTAssertNil(error, @"Create Profile error for %@; error was %@", [profile nickname], [error localizedDescription]);
     XCTAssertNotNil(profile.profilePic, @"Profile thumbnail is nil");
+}
+
+- (void)testChangePassword
+{
+    // first - let's generate some data we will need...
+    NSString * firstName = [self randomString:7];
+    NSString * lastName = [self randomString:7];
+    NSString * email = [NSString stringWithFormat:@"%@@%@.com", firstName, lastName];
+    NSString * password = [NSString stringWithFormat:@"Aa1%@", [self randomString:20]];
+    NSString * username = [NSString stringWithFormat:@"%@%@", firstName, lastName];
+    
+    // next - let's create and register the user with some minimum info
+    MyFFUser * newUser = [[MyFFUser alloc] init];
+    newUser.userName = username;
+    newUser.firstName = firstName;
+    newUser.lastName = lastName;
+    newUser.email = email;
+    NSError * registerError;
+    newUser = (MyFFUser *)[ff registerUser:newUser password:password error:&registerError];
+    XCTAssertNil(registerError, @"Register error for %@; error was %@", [newUser userName], [registerError localizedDescription]);
+    XCTAssertNotNil(newUser, @"Register failed for %@; uaer was nil", [newUser userName]);
+    
+    // now let's change the password
+    NSString * newPassword = [NSString stringWithFormat:@"Aa1%@", [self randomString:20]];
+    NSDictionary * passwordDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          newPassword,@"password",
+                          nil];
+    NSLog(@"testChangePassword new password is: %@", newPassword);
+    __block BOOL testCompleted = false;
+    [ff postObj:passwordDict toExtension:@"/ff/ext/changePassword" onComplete:^(NSError *extensionError, id theObj, NSHTTPURLResponse *theResponse) {
+        NSLog(@"testChangePassword succeeded for: %@", newUser.userName);
+        XCTAssertNil(extensionError, @"Change password error for %@; error was %@", [newUser userName], [extensionError localizedDescription]);
+        NSError * loginError;
+        [ff loginWithUserName:newUser.userName andPassword:newPassword error:&loginError];
+        XCTAssertNil(loginError, @"testChangePassword login error for %@; error was %@", [newUser userName], [loginError localizedDescription]);
+        testCompleted = true;
+    }];
+    while (!testCompleted) {
+        NSDate* cycle = [NSDate dateWithTimeIntervalSinceNow:0.01];
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:cycle];
+    }
 }
 
 /*!
