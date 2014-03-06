@@ -1,7 +1,9 @@
 fyi.managingusers
 =================
 
-This sample application demonstrates some of the options for doing user management on the FatFractal platform. The current version includes examples of two methods to add some custom information about the user to the system. Either is fine, and there are some important distinctions regarding access control that you may want to consider.
+This sample application demonstrates some of the options for doing user management on the FatFractal platform. 
+
+The current version includes three tests - including two methods to add some custom information about the user to the system and a third test that demonstrates how to implement a password change for a use. 
 
 Android and iOS versions with test code are included, but the fastest way to see the results is to see the HTML5/JS version. You can get to see that from this link:
 
@@ -40,5 +42,20 @@ The other method is to add the additional information to a new Objecttype (my ex
 
 <em>FFDL definition for PublicProfile with REFERENCE to MyFFUser(FFUser)</em><br>
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-config/application.ffdl#line-25>FFDL definition for PublicProfile</a>
+
+<strong>Changing a user password</strong>
+
+This test uses a server extension that will securely change a user password. 
+
+<em>Server extension - changePassword</em><br>
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-scripts/ManagingUsersExtensions.js#L7-38>Android test case for registering a FFUser(MyFFUser) user and creating a PublicProfile as well</a><br>
+
+<em>FFDL definition to add the server extension</em><br>
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-config/application.ffdl#L44>FFDL definition for changePassword extension</a>
+
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/ManagingUsersTests.js#L119-163>HTML5/JS test case for changing user password</a><br>
+
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSAppTests/ManagingUsersIOSAppTests.m#L123-163>iOS test case for changing user password</a><br>
+
 
 
