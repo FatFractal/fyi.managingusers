@@ -48,11 +48,12 @@ The other method is to add the additional information to a new Objecttype (my ex
 This test uses a server extension that will securely change a user password. 
 
 <em>Server extension - changePassword</em><br>
-<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-scripts/ManagingUsersExtensions.js#L7-38>Android test case for registering a FFUser(MyFFUser) user and creating a PublicProfile as well</a><br>
+<a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-scripts/ManagingUsersExtensions.js#L7-38>Source for changePassword extension</a><br>
 
 <em>FFDL definition to add the server extension</em><br>
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ff-config/application.ffdl#L44>FFDL definition for changePassword extension</a>
 
+<em>Client side test cases for changing the user password</em><br>
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/webapp/js/ManagingUsersTests.js#L119-163>HTML5/JS test case for changing user password</a><br>
 
 <a href = https://github.com/FatFractal/fyi.managingusers/blob/master/ManagingUsersIOSApp/ManagingUsersIOSAppTests/ManagingUsersIOSAppTests.m#L123-163>iOS test case for changing user password</a><br>
