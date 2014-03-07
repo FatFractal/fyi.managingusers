@@ -28,11 +28,11 @@ CREATE OBJECTTYPE PublicProfile (user REFERENCE /FFUser, profilePic BYTEARRAY, h
 # Collection Resources
 #
 CREATE COLLECTION /FFUser OBJECTTYPE FFUser
-#PERMIT read:system.admins write:system.admins ON /FFUser
+PERMIT read:none write:none ON /FFUser
 CREATE COLLECTION /FFUserGroup OBJECTTYPE FFUserGroup
 CREATE COLLECTION /FFNotificationID OBJECTTYPE FFNotificationID
 CREATE COLLECTION /PublicProfiles OBJECTTYPE PublicProfile
-#PERMIT read:loggedin write:system.admins ON /PublicProfile
+PERMIT read:loggedin write:none ON /PublicProfile
 
 #
 # Event Handlers
