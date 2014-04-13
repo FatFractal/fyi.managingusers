@@ -100,7 +100,7 @@ asyncTest("testRegisterMyFFUserWithProfile", function() {
                     ok(pic !== null, "not able to read image.");
                     profile.profilePic = pic;
                     console.log("Image byteLength is: " + pic.byteLength);  
-                    ff.createObjAtUri(profile, "/PublicProfile",  function(newProfile) {
+                    ff.createObjAtUri(profile, "/PublicProfiles",  function(newProfile) {
                         ok(newProfile.home.latitude == 33.5, "latitude is correct.");
                         ok(newProfile.home.longitude == -112, "longitude is correct.");
                         ok(newProfile.profilePic.byteLength !== null, "profilePic is correct.");

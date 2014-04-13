@@ -32,7 +32,7 @@ PERMIT read:none write:none ON /FFUser
 CREATE COLLECTION /FFUserGroup OBJECTTYPE FFUserGroup
 CREATE COLLECTION /FFNotificationID OBJECTTYPE FFNotificationID
 CREATE COLLECTION /PublicProfiles OBJECTTYPE PublicProfile
-PERMIT read:loggedin write:none ON /PublicProfile
+PERMIT read:loggedin write:none ON /PublicProfiles
 
 #
 # Event Handlers
